@@ -174,11 +174,11 @@ public class Peluqueria {
   
 
 
-                        historial.AgregarCliente(nombre, servicioNombre, peluquero, hora);  //historial de clientes
+                        historial.AgregarCliente(nombre, servicioNombre, peluquero, hora, peluqueroElegido, horaElegida);  //historial de clientes
                         String pAsignado = rotacion.asignarSiguientePeluquero();
                         System.out.println("Asignado a: " + pAsignado);
                         colaEspera.agregarCliente(nombre, servicioNombre); //fila de espera
-                        pilaDeshacer.agregarCliente(nombre, servicioNombre); //para la opcion de eliminar ultimo registro
+                        pilaDeshacer.agregarCliente(nombre, servicioNombre, peluquero, hora, peluqueroElegido, horaElegida); //para la opcion de eliminar ultimo registro
                     } else if (tipo == 2) {
                         System.out.println("que producto desea elegir");
                         for (int i = 0; i < productos.length; i++) {    //muestra de los productos+precios
@@ -199,9 +199,11 @@ public class Peluqueria {
                        nombre,
                        productoNombre,
                        "N/A",
-                       "N/A"
+                       "N/A",
+                       -1,
+                       -1
                         );   //historial de clientes
-                        pilaDeshacer.agregarCliente(nombre, productoNombre); //para la opcion de eliminar ultimo registro
+                        pilaDeshacer.agregarCliente(nombre, productoNombre, "N/A", "N/A", -1, -1); //para la opcion de eliminar ultimo registro
                     } else {
                         System.out.println("[!] Tipo de registro no válido. Cancelando.");
                     }
@@ -210,8 +212,15 @@ public class Peluqueria {
                     colaEspera.atenderCliente();
                     break;
                 case 5:
-                    pilaDeshacer.atenderUltimoCliente();
-                    break;
+
+                    String clienteEliminado =
+                     pilaDeshacer.atenderUltimoCliente();
+
+                    if(clienteEliminado != null){
+                      historial.ElimiarCliente(clienteEliminado);
+                 }
+
+                  break;
                 case 6:
                     historial.MostrarCliente();
                     break;

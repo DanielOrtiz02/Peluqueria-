@@ -9,8 +9,8 @@ public class PilaCliente {
     }
 
     
-    public void agregarCliente(String cliente, String servicio) {
-        Nodo nuevo = new Nodo(cliente, servicio);
+    public void agregarCliente(String cliente, String servicio, String peluquero, String hora, int indicePeluquero, int indiceHora) {
+        Nodo nuevo = new Nodo(cliente, servicio, peluquero, hora, indicePeluquero, indiceHora );
 
         nuevo.siguiente = cima;
         cima = nuevo;
@@ -19,17 +19,25 @@ public class PilaCliente {
     }
 
     
-    public void atenderUltimoCliente() {
+    public String atenderUltimoCliente() {
         if (cima == null) {
             System.out.println("La pila está vacía.");
-            return;
+            return null;
         }
+        if(cima.indicePeluquero != -1 &&
+       cima.indiceHora != -1){
+
+        Peluqueria.horarios[cima.indicePeluquero]
+                           [cima.indiceHora] = false;
+       }                   
 
         System.out.println("registro eliminado: "
                 + cima.dato + " - "
                 + cima.detalle);
 
+        String clienteEliminado = cima.dato;
         cima = cima.siguiente;
+        return clienteEliminado;
     }
 
     public void mostrarPila() {

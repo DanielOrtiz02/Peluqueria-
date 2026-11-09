@@ -4,9 +4,9 @@ public class ListaClientes {
 
     Nodo cabeza;
 
-    public void AgregarCliente(String cliente, String servicio, String peluquero, String hora)
+    public void AgregarCliente(String cliente, String servicio, String peluquero, String hora, int indicePeluquero, int indiceHora)
      {
-        Nodo nuevo = new Nodo(cliente, servicio, peluquero , hora);
+        Nodo nuevo = new Nodo(cliente, servicio, peluquero , hora, indicePeluquero, indiceHora);
 
         //Si la lista esta vacia,  el nodo new es la cabeeza
         if (cabeza == null) {
