@@ -10,7 +10,7 @@ public class ColaCliente {
         fin = null;
     }
 
-    // Encolar
+    // Agregamos un cliente a la cola 
     public void agregarCliente(String cliente, String servicio) {
 
         Nodo nuevo = new Nodo(cliente, servicio);
@@ -26,7 +26,7 @@ public class ColaCliente {
         System.out.println("Cliente agregado a la cola.");
     }
 
-    // Desencolar
+    // Sacamos al cliente de la cola ya que este va a ser atendido 
     public void atenderCliente() {
 
         if (frente == null) {
@@ -45,7 +45,7 @@ public class ColaCliente {
             fin = null;
         }
     }
-
+  //mostrar los clientes los cuales estan en la cola 
     public void mostrarCola() {
 
         if (frente == null) {
