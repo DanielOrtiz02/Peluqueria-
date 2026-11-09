@@ -155,7 +155,7 @@ public class Peluqueria {
                             System.out.println((i + 1 ) + ". " + peluqueros[i]);
                         }
 
-                        int peluqueroElejido = sc.nextInt() -1;
+                        int peluqueroElegido = sc.nextInt() -1;
                         System.out.println("\nSeleccione una hora:");
 
                         for(int i = 0; i < horas.length; i++) {
@@ -195,7 +195,12 @@ public class Peluqueria {
 
                         sc.nextLine();
                         System.out.println("Venta de producto registrada.");
-                        historial.AgregarCliente(nombre, productoNombre);   //historial de clientes
+                       historial.AgregarCliente(
+                       nombre,
+                       productoNombre,
+                       "N/A",
+                       "N/A"
+                        );   //historial de clientes
                         pilaDeshacer.agregarCliente(nombre, productoNombre); //para la opcion de eliminar ultimo registro
                     } else {
                         System.out.println("[!] Tipo de registro no válido. Cancelando.");
