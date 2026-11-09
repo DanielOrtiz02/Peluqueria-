@@ -5,7 +5,7 @@ public class ListaClientes {
     Nodo cabeza;
 
     public void AgregarCliente(String cliente, String servicio) {
-        Nodo nuevo = new Nodo(cliente, servicio);
+        Nodo nuevo = new Nodo(cliente, servicio, peluquero, hora);
 
         //Si la lista esta vacia,  el nodo new es la cabeeza
         if (cabeza == null) {
@@ -29,7 +29,7 @@ public class ListaClientes {
         int i = 1;
         System.out.println(" Historial de clientes ");
         while (actual != null) {
-            System.out.println(i + " Cliente: " + actual.dato + " Servicio: " + actual.detalle);
+            System.out.println(i + " Cliente: " + actual.dato + " Servicio: " + actual.detalle + " Peluquero " + actual.peluquero + " Hora " + actual.hora);
             actual = actual.siguiente;
             i++;
         }

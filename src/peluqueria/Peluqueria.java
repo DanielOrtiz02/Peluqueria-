@@ -149,7 +149,32 @@ public class Peluqueria {
                         
                         String servicioNombre = servicios[servicioElegido - 1];
 
-                        historial.AgregarCliente(nombre, servicioNombre);  //historial de clientes
+                        System.out.println("'\n Selecione un peluquero ");
+                        
+                        for (int i = 0; i < peluqueros.length; i++) {
+                            System.out.println((i + 1 ) + ". " + peluqueros[i]);
+                        }
+
+                        int peluqueroElejido = sc.nextInt() -1;
+                        System.out.println("\nSeleccione una hora:");
+
+                        for(int i = 0; i < horas.length; i++) {
+
+                        if(!horarios[peluqueroElegido][i]) {
+                        System.out.println((i + 1) + ". " + horas[i]);
+                            }
+
+                        } 
+
+                          int horaElegida = sc.nextInt() - 1;
+
+                        horarios[peluqueroElegido][horaElegida] = true;
+                        String peluquero = peluqueros[peluqueroElegido];
+                        String hora = horas[horaElegida];
+  
+
+
+                        historial.AgregarCliente(nombre, servicioNombre, peluquero, hora);  //historial de clientes
                         String pAsignado = rotacion.asignarSiguientePeluquero();
                         System.out.println("Asignado a: " + pAsignado);
                         colaEspera.agregarCliente(nombre, servicioNombre); //fila de espera
