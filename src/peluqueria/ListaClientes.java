@@ -29,7 +29,7 @@ public class ListaClientes {
         int i = 1;
         System.out.println(" Historial de clientes ");
         while (actual != null) {
-            System.out.println(i + " Cliente: " + actual.siguiente + "Servicio: " + actual.detalle);
+            System.out.println(i + " Cliente: " + actual.dato + "Servicio: " + actual.detalle);
             actual = actual.siguiente;
             i++;
         }
