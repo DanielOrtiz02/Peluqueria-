@@ -8,9 +8,9 @@ public class Peluqueria {
             "Corte, barba y cejas",
             "Cera",
             "Polvos de textura",
-            "Queratina",
+            "keratina",
             "Tintura",
-            "Queratina pelo largo",
+            "keratina pelo largo",
             "Tintura pelo largo"
     };
     static int[] precios = {
@@ -20,12 +20,12 @@ public class Peluqueria {
             23000, // Corte, barba y cejas
             25000, // Cera
             20000, // Polvos de textura
-            100000, // Queratina
+            100000, // keratina
             120000, // Tintura
-            150000, // Queratina pelo largo
+            150000, // keratina pelo largo
             180000 // Tintura pelo largo
     };
-    static String[] peluqueros = { "Peluquero-1", "Peluquero-2", "Peluquero-3", "Peluquero-4" };
+    static String[] peluqueros = { "Brayan", "Chirly", "Javi", "El kevin" };
     static String[] horas = { "8AM", "9AM", "10AM", "11AM", "12PM",
             "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM" };
 
