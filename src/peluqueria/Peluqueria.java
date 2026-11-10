@@ -140,7 +140,13 @@ public class Peluqueria {
                             System.out.println((i + 1) + ". " + servicios[i] + " - $" + precios[i]);
                         }
                         System.out.print("Elige un servicio (1-" + servicios.length + "): ");
+                        if (!sc.hasNextInt()) {
+                        System.out.println("\n[!] Error: Debes ingresar un número válido (del 1 al " + servicios.length + "). No letras ni símbolos.");
+                        sc.nextLine();         //no permitir otro valor que no sea entero
+                        break;
+                    }
                         int servicioElegido = sc.nextInt();
+                        
                         String servicioNombre = servicios[servicioElegido - 1];
 
                         historial.AgregarCliente(nombre, servicioNombre);  //historial de clientes
@@ -154,6 +160,11 @@ public class Peluqueria {
                             System.out.println((i + 1) + ". " + productos[i] + " - $" + preciosProductos[i]);
                         }
                         System.out.print("Elige un producto (1-" + productos.length + "): ");
+                        if (!sc.hasNextInt()) {
+                        System.out.println("\n[!] Error: Debes ingresar un número válido (del 1 al " + productos.length + "). No letras ni símbolos.");
+                        sc.nextLine();         //no permitir otro valor que no sea entero
+                        break;
+                    }
                         int productoElegido = sc.nextInt();
                         String productoNombre = productos[productoElegido - 1];
 
