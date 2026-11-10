@@ -97,8 +97,15 @@ public class Peluqueria {
             System.out.println("7. Salir");
             System.out.print("Elige una opción: ");
 
-            int opcion = sc.nextInt();
-            sc.nextLine();
+
+            int opcion = -1; 
+            if (sc.hasNextInt()) {
+                opcion = sc.nextInt();
+                sc.nextLine();
+            }else {
+                System.out.println("\n[!] Error: Debes ingresar un número válido (del 1 al 7). No letras ni símbolos.");            
+                sc.next();
+                continue;
 
             switch (opcion) {
                 case 1:
@@ -112,6 +119,14 @@ public class Peluqueria {
                     System.out.print("Nombre del cliente: ");
                     String nombre = sc.nextLine();
                     System.out.println("1. Servicio (Requiere peluquero) | 2. Producto");
+                    int tipo = sc.nextInt();
+                    sc.nextLine();
+
+                    if (!sc.hasNextInt()) {
+                        System.out.println("[!] Entrada inválida. Cancelando registro.");
+                        sc.next();
+                        break;
+                    }
                     int tipo = sc.nextInt();
                     sc.nextLine();
 
