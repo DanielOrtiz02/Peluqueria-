@@ -5,24 +5,28 @@ import java.util.Scanner;
 public class Peluqueria {
     static Scanner sc = new Scanner(System.in);
     static String[] servicios = {
-            "Corte básico",
-            "Corte más barba",
-            "Corte más cejas",
+            "Corte basico",
+            "Corte mas barba",
+            "Corte mas cejas",
             "Corte, barba y cejas",
-            "Cera",
-            "Polvos de textura",
             "keratina",
             "Tintura",
             "keratina pelo largo",
             "Tintura pelo largo"
     };
-    static int[] precios = {
-            15000, // Corte básico
-            20000, // Corte más barba
-            20000, // Corte con cejas
-            23000, // Corte, barba y cejas
+    static String[] productos = {
+            "Cera",
+            "Polvos de textura"
+    };
+    static int[] preciosProductos = {
             25000, // Cera
-            20000, // Polvos de textura
+            20000 // Polvos de textura
+    };
+    static int[] precios = {
+            15000, // Corte basico
+            20000, // Corte mas barba
+            20000, // Corte mas cejas
+            23000, // Corte, barba y cejas
             100000, // keratina
             120000, // Tintura
             150000, // keratina pelo largo
@@ -65,21 +69,21 @@ public class Peluqueria {
 
         System.out.print("Peluquero\t");
         for (String h : horas) {
-            System.out.print(h + "\t");
+            System.out.print(h + "\t"); //recorrido de las horas
         }
         System.out.println();
 
         for (int i = 0; i < peluqueros.length; i++) {
-            System.out.print(peluqueros[i] + "\t\t");
+            System.out.print(peluqueros[i] + "\t\t"); //nombre de los peluqueros
 
-            for (int j = 0; j < horas.length; j++) {
-                if (horarios[i][j]) {
+            for (int j = 0; j < horas.length; j++) {    //recorrido de las horas
+                if (horarios[i][j]) {           
                     System.out.print("Ocupado\t");
                 } else {
                     System.out.print("Libre\t");
                 }
             }
-            System.out.println(); 
+            System.out.println();
         }
     }
 
@@ -97,15 +101,15 @@ public class Peluqueria {
             System.out.println("7. Salir");
             System.out.print("Elige una opción: ");
 
-
-            int opcion = -1; 
-            if (sc.hasNextInt()) {
+            int opcion = -1;
+            if (sc.hasNextInt()) {          //no permitimos letras ni simbolos
                 opcion = sc.nextInt();
-                sc.nextLine();
-            }else {
-                System.out.println("\n[!] Error: Debes ingresar un número válido (del 1 al 7). No letras ni símbolos.");            
+                sc.nextLine();              
+            } else {
+                System.out.println("\n[!] Error: Debes ingresar un número válido (del 1 al 7). No letras ni símbolos.");
                 sc.next();
                 continue;
+            }
 
             switch (opcion) {
                 case 1:
@@ -118,28 +122,46 @@ public class Peluqueria {
                 case 3:
                     System.out.print("Nombre del cliente: ");
                     String nombre = sc.nextLine();
-                    System.out.println("1. Servicio (Requiere peluquero) | 2. Producto");
-                    int tipo = sc.nextInt();
-                    sc.nextLine();
-
+                    System.out.println("1. Servicio (Requiere peluquero) | 2. Producto");   
+                        //opcion de servicio o producto
                     if (!sc.hasNextInt()) {
                         System.out.println("[!] Entrada inválida. Cancelando registro.");
-                        sc.next();
+                        sc.nextLine();         //no permitir otro valor que no sea entero
                         break;
                     }
+
                     int tipo = sc.nextInt();
                     sc.nextLine();
 
-                    System.out.print("Escribe lo que desea: ");
-                    String detalle = sc.nextLine();
-
                     if (tipo == 1) {
+                        System.out.println("que servicio desea elegir");
+                        for (int i = 0; i < servicios.length; i++) {    //muestra de los servicios+precios
+                            System.out.println((i + 1) + ". " + servicios[i] + " - $" + precios[i]);
+                        }
+                        System.out.print("Elige un servicio (1-" + servicios.length + "): ");
+                        int servicioElegido = sc.nextInt();
+                        String servicioNombre = servicios[servicioElegido - 1];
+
+                        historial.AgregarCliente(nombre, servicioNombre);  //historial de clientes
                         String pAsignado = rotacion.asignarSiguientePeluquero();
                         System.out.println("Asignado a: " + pAsignado);
-                        colaEspera.agregarCliente(nombre, detalle);
-                    } else {
+                        colaEspera.agregarCliente(nombre, servicioNombre); //fila de espera
+
+                    } else if (tipo == 2) {
+                        System.out.println("que producto desea elegir");
+                        for (int i = 0; i < productos.length; i++) {    //muestra de los productos+precios
+                            System.out.println((i + 1) + ". " + productos[i] + " - $" + preciosProductos[i]);
+                        }
+                        System.out.print("Elige un producto (1-" + productos.length + "): ");
+                        int productoElegido = sc.nextInt();
+                        String productoNombre = productos[productoElegido - 1];
+
+                        sc.nextLine();
                         System.out.println("Venta de producto registrada.");
-                        historial.AgregarCliente(nombre, detalle);
+                        historial.AgregarCliente(nombre, productoNombre);   //historial de clientes
+
+                    } else {
+                        System.out.println("[!] Tipo de registro no válido. Cancelando.");
                     }
                     break;
                 case 4:

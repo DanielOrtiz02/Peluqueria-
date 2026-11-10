@@ -22,14 +22,14 @@ public class ListaClientes {
 
     public void MostrarCliente() {
         if (cabeza == null) {
-            System.out.println("No hay clietes en la base. ");
+            System.out.println("No hay clientes en la base. ");
             return;
         }
         Nodo actual = cabeza;
         int i = 1;
         System.out.println(" Historial de clientes ");
         while (actual != null) {
-            System.out.println(i + " Cliente: " + actual.dato + "Servicio: " + actual.detalle);
+            System.out.println(i + " Cliente: " + actual.dato + " Servicio: " + actual.detalle);
             actual = actual.siguiente;
             i++;
         }
