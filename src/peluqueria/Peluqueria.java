@@ -1,6 +1,9 @@
 package peluqueria;
 
+import java.util.Scanner;
+
 public class Peluqueria {
+    static Scanner sc = new Scanner(System.in);
     static String[] servicios = {
             "Corte básico",
             "Corte más barba",
@@ -25,7 +28,7 @@ public class Peluqueria {
             150000, // keratina pelo largo
             180000 // Tintura pelo largo
     };
-    static String[] peluqueros = { "Brayan", "Chirly", "Javi", "El kevin" };
+    static String[] peluqueros = { "Brayan", "Chirly", "Javi", "Kevin" };
     static String[] horas = { "8AM", "9AM", "10AM", "11AM", "12PM",
             "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM" };
 
@@ -59,6 +62,7 @@ public class Peluqueria {
 
     public static void mostrarHorarios() {
         System.out.println("\n   HORARIOS DISPONIBLES   ");
+
         System.out.print("Peluquero\t");
         for (String h : horas) {
             System.out.print(h + "\t");
@@ -66,20 +70,93 @@ public class Peluqueria {
         System.out.println();
 
         for (int i = 0; i < peluqueros.length; i++) {
-            System.out.print(peluqueros[i] + "\t");
+            System.out.print(peluqueros[i] + "\t\t");
+
             for (int j = 0; j < horas.length; j++) {
                 if (horarios[i][j]) {
-                    System.out.print("Ocupado\t"); 
+                    System.out.print("Ocupado\t");
                 } else {
-                    System.out.print("Libre\t"); 
+                    System.out.print("Libre\t");
                 }
             }
-            System.out.println();
+            System.out.println(); 
+        }
+    }
+
+    public static void mostrarMenu(Scanner sc, ListaClientes historial,
+            ColaCliente colaEspera, PilaCliente pilaDeshacer, ListaCircular rotacion) {
+        boolean salir = false;
+        while (!salir) {
+            System.out.println("\n--- MENÚ PELUQUERÍA ---");
+            System.out.println("1. Ver Catálogo (Ordenado)");
+            System.out.println("2. Ver Horarios de Peluqueros");
+            System.out.println("3. Registrar Cliente / Venta");
+            System.out.println("4. Atender Siguiente Cliente");
+            System.out.println("5. Deshacer Último Registro");
+            System.out.println("6. Ver Historial de Clientes");
+            System.out.println("7. Salir");
+            System.out.print("Elige una opción: ");
+
+            int opcion = sc.nextInt();
+            sc.nextLine();
+
+            switch (opcion) {
+                case 1:
+                    ordenarServicios(servicios, precios);
+                    mostrarCatalogo(servicios, precios);
+                    break;
+                case 2:
+                    mostrarHorarios();
+                    break;
+                case 3:
+                    System.out.print("Nombre del cliente: ");
+                    String nombre = sc.nextLine();
+                    System.out.println("1. Servicio (Requiere peluquero) | 2. Producto");
+                    int tipo = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.print("Escribe lo que desea: ");
+                    String detalle = sc.nextLine();
+
+                    if (tipo == 1) {
+                        String pAsignado = rotacion.asignarSiguientePeluquero();
+                        System.out.println("Asignado a: " + pAsignado);
+                        colaEspera.agregarCliente(nombre, detalle);
+                    } else {
+                        System.out.println("Venta de producto registrada.");
+                        historial.AgregarCliente(nombre, detalle);
+                    }
+                    break;
+                case 4:
+                    colaEspera.atenderCliente();
+                    break;
+                case 5:
+                    pilaDeshacer.atenderUltimoCliente();
+                    break;
+                case 6:
+                    historial.MostrarCliente();
+                    break;
+                case 7:
+                    salir = true;
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
+            }
         }
     }
 
     public static void main(String[] args) {
-        
+
+        ListaClientes historial = new ListaClientes();
+        ColaCliente colaEspera = new ColaCliente();
+        PilaCliente pilaDeshacer = new PilaCliente();
+        ListaCircular rotacion = new ListaCircular();
+
+        rotacion.agregarPeluquero("Brayan");
+        rotacion.agregarPeluquero("Chirly");
+        rotacion.agregarPeluquero("Javi");
+        rotacion.agregarPeluquero("Kevin");
+        mostrarMenu(sc, historial, colaEspera, pilaDeshacer, rotacion);
     }
 
 }

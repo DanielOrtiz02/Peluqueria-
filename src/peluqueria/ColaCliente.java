@@ -5,7 +5,7 @@ public class ColaCliente {
     private Nodo frente;
     private Nodo fin;
 
-    public ColaClientes() {
+    public ColaCliente() {
         frente = null;
         fin = null;
     }
