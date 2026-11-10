@@ -96,9 +96,10 @@ public class Peluqueria {
             System.out.println("2. Ver Horarios de Peluqueros");
             System.out.println("3. Registrar Cliente / Venta");
             System.out.println("4. Atender Siguiente Cliente");
-            System.out.println("5. Deshacer Último Registro");
+            System.out.println("5. cancelar ultimo registro");
             System.out.println("6. Ver Historial de Clientes");
-            System.out.println("7. Salir");
+            System.out.println("7. Ver Pila de clientes");
+            System.out.println("8. Salir");
             System.out.print("Elige una opción: ");
 
             int opcion = -1;
@@ -146,7 +147,7 @@ public class Peluqueria {
                         String pAsignado = rotacion.asignarSiguientePeluquero();
                         System.out.println("Asignado a: " + pAsignado);
                         colaEspera.agregarCliente(nombre, servicioNombre); //fila de espera
-
+                        pilaDeshacer.agregarCliente(nombre, servicioNombre); //para la opcion de eliminar ultimo registro
                     } else if (tipo == 2) {
                         System.out.println("que producto desea elegir");
                         for (int i = 0; i < productos.length; i++) {    //muestra de los productos+precios
@@ -159,7 +160,7 @@ public class Peluqueria {
                         sc.nextLine();
                         System.out.println("Venta de producto registrada.");
                         historial.AgregarCliente(nombre, productoNombre);   //historial de clientes
-
+                        pilaDeshacer.agregarCliente(nombre, productoNombre); //para la opcion de eliminar ultimo registro
                     } else {
                         System.out.println("[!] Tipo de registro no válido. Cancelando.");
                     }
@@ -174,6 +175,9 @@ public class Peluqueria {
                     historial.MostrarCliente();
                     break;
                 case 7:
+                    pilaDeshacer.mostrarPila();
+                    break;
+                case 8:
                     salir = true;
                     break;
                 default:

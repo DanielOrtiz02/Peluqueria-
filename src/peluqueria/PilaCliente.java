@@ -15,7 +15,7 @@ public class PilaCliente {
         nuevo.siguiente = cima;
         cima = nuevo;
 
-        System.out.println("Cliente agregado a la pila.");
+        
     }
 
     
@@ -25,7 +25,7 @@ public class PilaCliente {
             return;
         }
 
-        System.out.println("Cliente atendido: "
+        System.out.println("registro eliminado: "
                 + cima.dato + " - "
                 + cima.detalle);
 
