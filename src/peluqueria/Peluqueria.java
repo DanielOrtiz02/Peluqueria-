@@ -102,7 +102,7 @@ public class Peluqueria {
             System.out.println("8. Salir");
             System.out.print("Elige una opción: ");
 
-            int opcion = -1;
+            int opcion;
             if (sc.hasNextInt()) {          //no permitimos letras ni simbolos
                 opcion = sc.nextInt();
                 sc.nextLine();              
@@ -146,6 +146,10 @@ public class Peluqueria {
                         break;
                     }
                         int servicioElegido = sc.nextInt();
+                        if(servicioElegido < 1 || servicioElegido > servicios.length) {
+                            System.out.println("[!] Servicio no válido. Cancelando registro.");
+                            break;
+                        }
                         
                         String servicioNombre = servicios[servicioElegido - 1];
 
@@ -156,6 +160,10 @@ public class Peluqueria {
                         }
 
                         int peluqueroElegido = sc.nextInt() -1;
+                        if(peluqueroElegido < 0 || peluqueroElegido >= peluqueros.length) {
+                            System.out.println("[!] Peluquero no válido. Cancelando registro.");
+                            break;
+                        }
                         System.out.println("\nSeleccione una hora:");
 
                         for(int i = 0; i < horas.length; i++) {
