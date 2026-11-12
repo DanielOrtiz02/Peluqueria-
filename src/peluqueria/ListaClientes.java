@@ -56,7 +56,7 @@ public class ListaClientes {
         }
         if (cabeza.dato.equalsIgnoreCase(nombre)) {
             cabeza = cabeza.siguiente;
-            System.out.println("Regristo de " + nombre + "eliminado del historial. ");
+            System.out.println("Regristo de " + nombre + " eliminado del historial. ");
             return;
         }
         Nodo actual = cabeza;

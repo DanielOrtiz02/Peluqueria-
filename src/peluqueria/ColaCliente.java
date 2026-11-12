@@ -67,7 +67,31 @@ public class ColaCliente {
             actual = actual.siguiente;
         }
     }
+    public boolean eliminarCliente(String nombre) {
+    Nodo anterior = null;
+    Nodo actual = frente;
 
+    while (actual != null && !actual.dato.equalsIgnoreCase(nombre)) {
+        anterior = actual;
+        actual = actual.siguiente;
+    }
+
+    if (actual == null) {
+        return false; // No estaba en la cola, por ejemplo, si ya fue atendido.
+    }
+
+    if (anterior == null) {
+        frente = actual.siguiente; // El cliente estaba al frente.
+    } else {
+        anterior.siguiente = actual.siguiente;
+    }
+
+    if (actual == fin) {
+        fin = anterior; // El cliente estaba al final.
+    }
+
+    return true;
+}
     public boolean estaVacia() {
         return frente == null;
     }

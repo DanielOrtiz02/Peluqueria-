@@ -226,6 +226,7 @@ public class Peluqueria {
 
                     if(clienteEliminado != null){
                       historial.ElimiarCliente(clienteEliminado);
+                      colaEspera.eliminarCliente(clienteEliminado);
                  }
 
                   break;
