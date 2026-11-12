@@ -154,12 +154,32 @@ public class Peluqueria {
                         String servicioNombre = servicios[servicioElegido - 1];
 
                         System.out.println("'\n Selecione un peluquero ");
-                        
-                        for (int i = 0; i < peluqueros.length; i++) {
-                            System.out.println((i + 1 ) + ". " + peluqueros[i]);
-                        }
+                        System.out.println("Como desea asignar el peluquero: 1. Manual 2. Automatico");
+                        int opcionPeluquero = sc.nextInt();
+                        int peluqueroElegido = -1;
+   
+                        if (opcionPeluquero == 1) {
+                         for (int i = 0; i < peluqueros.length; i++) {
+                         System.out.println((i + 1) + ". " + peluqueros[i]);
+                          }
 
-                        int peluqueroElegido = sc.nextInt() -1;
+                         peluqueroElegido = sc.nextInt() - 1;
+
+                       } else if (opcionPeluquero == 2) {
+   
+                       String pAsignado = rotacion.asignarSiguientePeluquero();
+
+                       for (int i = 0; i < peluqueros.length; i++) {
+                      if (peluqueros[i].equals(pAsignado)) {
+                       peluqueroElegido = i;
+                      break;
+                      }
+                    }
+
+                     } else {
+                    System.out.println("Opcion de peluquero no valida.");
+                     break;}
+                        
                         if(peluqueroElegido < 0 || peluqueroElegido >= peluqueros.length) {
                             System.out.println("[!] Peluquero no válido. Cancelando registro.");
                             break;
