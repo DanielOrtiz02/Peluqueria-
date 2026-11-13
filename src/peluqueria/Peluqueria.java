@@ -321,11 +321,4 @@ public class Peluqueria {
 
 }
 
-/*
- * falta
- * 1. metodo binario
- * 2. metodo de ordenamiento
- * 3. enlazar el horario con el registro
- * 4.separar el proceso del caso 3 de l menu en un metodo para que sea mas
- * legible
- */
+
