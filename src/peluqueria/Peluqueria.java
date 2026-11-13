@@ -69,15 +69,15 @@ public class Peluqueria {
 
         System.out.print("Peluquero\t");
         for (String h : horas) {
-            System.out.print(h + "\t"); //recorrido de las horas
+            System.out.print(h + "\t"); // recorrido de las horas
         }
         System.out.println();
 
         for (int i = 0; i < peluqueros.length; i++) {
-            System.out.print(peluqueros[i] + "\t\t"); //nombre de los peluqueros
+            System.out.print(peluqueros[i] + "\t\t"); // nombre de los peluqueros
 
-            for (int j = 0; j < horas.length; j++) {    //recorrido de las horas
-                if (horarios[i][j]) {           
+            for (int j = 0; j < horas.length; j++) { // recorrido de las horas
+                if (horarios[i][j]) {
                     System.out.print("Ocupado\t");
                 } else {
                     System.out.print("Libre\t");
@@ -103,9 +103,9 @@ public class Peluqueria {
             System.out.print("Elige una opción: ");
 
             int opcion;
-            if (sc.hasNextInt()) {          //no permitimos letras ni simbolos
+            if (sc.hasNextInt()) { // no permitimos letras ni simbolos
                 opcion = sc.nextInt();
-                sc.nextLine();              
+                sc.nextLine();
             } else {
                 System.out.println("\n[!] Error: Debes ingresar un número válido (del 1 al 7). No letras ni símbolos.");
                 sc.next();
@@ -123,11 +123,11 @@ public class Peluqueria {
                 case 3:
                     System.out.print("Nombre del cliente: ");
                     String nombre = sc.nextLine();
-                    System.out.println("1. Servicio (Requiere peluquero) | 2. Producto");   
-                        //opcion de servicio o producto
+                    System.out.println("1. Servicio (Requiere peluquero) | 2. Producto");
+                    // opcion de servicio o producto
                     if (!sc.hasNextInt()) {
                         System.out.println("[!] Entrada inválida. Cancelando registro.");
-                        sc.nextLine();         //no permitir otro valor que no sea entero
+                        sc.nextLine(); // no permitir otro valor que no sea entero
                         break;
                     }
 
@@ -136,90 +136,93 @@ public class Peluqueria {
 
                     if (tipo == 1) {
                         System.out.println("que servicio desea elegir");
-                        for (int i = 0; i < servicios.length; i++) {    //muestra de los servicios+precios
+                        for (int i = 0; i < servicios.length; i++) { // muestra de los servicios+precios
                             System.out.println((i + 1) + ". " + servicios[i] + " - $" + precios[i]);
                         }
                         System.out.print("Elige un servicio (1-" + servicios.length + "): ");
                         if (!sc.hasNextInt()) {
-                        System.out.println("\n[!] Error: Debes ingresar un número válido (del 1 al " + servicios.length + "). No letras ni símbolos.");
-                        sc.nextLine();         //no permitir otro valor que no sea entero
-                        break;
-                    }
+                            System.out.println("\n[!] Error: Debes ingresar un número válido (del 1 al "
+                                    + servicios.length + "). No letras ni símbolos.");
+                            sc.nextLine(); // no permitir otro valor que no sea entero
+                            break;
+                        }
                         int servicioElegido = sc.nextInt();
-                        if(servicioElegido < 1 || servicioElegido > servicios.length) {
+                        if (servicioElegido < 1 || servicioElegido > servicios.length) {
                             System.out.println("[!] Servicio no válido. Cancelando registro.");
                             break;
                         }
-                        
+
                         String servicioNombre = servicios[servicioElegido - 1];
 
                         System.out.println("'\n Selecione un peluquero ");
                         System.out.println("Como desea asignar el peluquero: 1. Manual 2. Automatico");
                         int opcionPeluquero = sc.nextInt();
                         int peluqueroElegido = -1;
-   
+
                         if (opcionPeluquero == 1) {
-                         for (int i = 0; i < peluqueros.length; i++) {
-                         System.out.println((i + 1) + ". " + peluqueros[i]);
-                          }
+                            for (int i = 0; i < peluqueros.length; i++) {
+                                System.out.println((i + 1) + ". " + peluqueros[i]);
+                            }
 
-                         peluqueroElegido = sc.nextInt() - 1;
+                            peluqueroElegido = sc.nextInt() - 1;
 
-                       } else if (opcionPeluquero == 2) {
-   
-                       String pAsignado = rotacion.asignarSiguientePeluquero();
+                        } else if (opcionPeluquero == 2) {
 
-                       for (int i = 0; i < peluqueros.length; i++) {
-                      if (peluqueros[i].equals(pAsignado)) {
-                       peluqueroElegido = i;
-                      break;
-                      }
-                    }
+                            String pAsignado = rotacion.asignarSiguientePeluquero();
 
-                     } else {
-                    System.out.println("Opcion de peluquero no valida.");
-                     break;}
-                        
-                        if(peluqueroElegido < 0 || peluqueroElegido >= peluqueros.length) {
+                            for (int i = 0; i < peluqueros.length; i++) {
+                                if (peluqueros[i].equals(pAsignado)) {
+                                    peluqueroElegido = i;
+                                    break;
+                                }
+                            }
+
+                        } else {
+                            System.out.println("Opcion de peluquero no valida.");
+                            break;
+                        }
+
+                        if (peluqueroElegido < 0 || peluqueroElegido >= peluqueros.length) {
                             System.out.println("[!] Peluquero no válido. Cancelando registro.");
                             break;
                         }
                         System.out.println("\nSeleccione una hora:");
 
-                        for(int i = 0; i < horas.length; i++) {
+                        for (int i = 0; i < horas.length; i++) {
 
-                        if(!horarios[peluqueroElegido][i]) {
-                        System.out.println((i + 1) + ". " + horas[i]);
+                            if (!horarios[peluqueroElegido][i]) {
+                                System.out.println((i + 1) + ". " + horas[i]);
                             }
 
-                        } 
+                        }
 
-                          int horaElegida = sc.nextInt() - 1;
+                        int horaElegida = sc.nextInt() - 1;
 
                         horarios[peluqueroElegido][horaElegida] = true;
                         String peluquero = peluqueros[peluqueroElegido];
                         String hora = horas[horaElegida];
-  
 
-
-                        historial.AgregarCliente(nombre, servicioNombre, peluquero, hora, peluqueroElegido, horaElegida);  //historial de clientes
+                        historial.AgregarCliente(nombre, servicioNombre, peluquero, hora, peluqueroElegido,
+                                horaElegida); // historial de clientes
                         String pAsignado = rotacion.asignarSiguientePeluquero();
                         System.out.println("Asignado a: " + pAsignado);
-                        colaEspera.agregarCliente(nombre, servicioNombre); //fila de espera
-                        pilaDeshacer.agregarCliente(nombre, servicioNombre, peluquero, hora, peluqueroElegido, horaElegida); //para la opcion de eliminar ultimo registro
+                        colaEspera.agregarCliente(nombre, servicioNombre); // fila de espera
+                        pilaDeshacer.agregarCliente(nombre, servicioNombre, peluquero, hora, peluqueroElegido,
+                                horaElegida); // para la opcion de eliminar ultimo registro
                     } else if (tipo == 2) {
                         System.out.println("que producto desea elegir");
-                        for (int i = 0; i < productos.length; i++) {    //muestra de los productos+precios
+                        for (int i = 0; i < productos.length; i++) { // muestra de los productos+precios
                             System.out.println((i + 1) + ". " + productos[i] + " - $" + preciosProductos[i]);
                         }
                         System.out.print("Elige un producto (1-" + productos.length + "): ");
                         if (!sc.hasNextInt()) {
-                        System.out.println("\n[!] Error: Debes ingresar un número válido (del 1 al " + productos.length + "). No letras ni símbolos.");
-                        sc.nextLine();         //no permitir otro valor que no sea entero
-                        break;
-                    }
+                            System.out.println("\n[!] Error: Debes ingresar un número válido (del 1 al "
+                                    + productos.length + "). No letras ni símbolos.");
+                            sc.nextLine(); // no permitir otro valor que no sea entero
+                            break;
+                        }
                         int productoElegido = sc.nextInt();
-                        if(productoElegido < 1 || productoElegido > productos.length) {
+                        if (productoElegido < 1 || productoElegido > productos.length) {
                             System.out.println("[!] Producto no válido. Cancelando registro.");
                             break;
                         }
@@ -227,33 +230,39 @@ public class Peluqueria {
 
                         sc.nextLine();
                         System.out.println("Venta de producto registrada.");
-                       historial.AgregarCliente(
-                       nombre,
-                       productoNombre,
-                       "N/A",
-                       "N/A",
-                       -1,
-                       -1
-                        );   //historial de clientes
-                        pilaDeshacer.agregarCliente(nombre, productoNombre, "N/A", "N/A", -1, -1); //para la opcion de eliminar ultimo registro
+                        historial.AgregarCliente(
+                                nombre,
+                                productoNombre,
+                                "N/A",
+                                "N/A",
+                                -1,
+                                -1); // historial de clientes
+                        pilaDeshacer.agregarCliente(nombre, productoNombre, "N/A", "N/A", -1, -1); // para la opcion de
+                                                                                                   // eliminar ultimo
+                                                                                                   // registro
                     } else {
                         System.out.println("[!] Tipo de registro no válido. Cancelando.");
                     }
                     break;
                 case 4:
-                    colaEspera.atenderCliente();
+                    // 1. Atiende al cliente, imprime sus datos y nos devuelve su nombre
+                    String clienteAtendido = colaEspera.atenderCliente();
+
+                    // 2. Si realmente se atendió a alguien, lo borramos de la pila
+                    if (clienteAtendido != null) {
+                        pilaDeshacer.eliminarClientePorNombre(clienteAtendido);
+                    }
                     break;
                 case 5:
 
-                    String clienteEliminado =
-                     pilaDeshacer.atenderUltimoCliente();
+                    String clienteEliminado = pilaDeshacer.atenderUltimoCliente();
 
-                    if(clienteEliminado != null){
-                      historial.ElimiarCliente(clienteEliminado);
-                      colaEspera.eliminarCliente(clienteEliminado);
-                 }
+                    if (clienteEliminado != null) {
+                        historial.ElimiarCliente(clienteEliminado);
+                        colaEspera.eliminarCliente(clienteEliminado);
+                    }
 
-                  break;
+                    break;
                 case 6:
                     historial.MostrarCliente();
                     break;
@@ -270,24 +279,53 @@ public class Peluqueria {
     }
 
     public static void main(String[] args) {
-
         ListaClientes historial = new ListaClientes();
         ColaCliente colaEspera = new ColaCliente();
         PilaCliente pilaDeshacer = new PilaCliente();
         ListaCircular rotacion = new ListaCircular();
 
-        rotacion.agregarPeluquero("Brayan");
-        rotacion.agregarPeluquero("Chirly");
-        rotacion.agregarPeluquero("Javi");
-        rotacion.agregarPeluquero("Kevin");
+        // 1. Agregar peluqueros a la lista circular
+        for (String peluquero : peluqueros) {
+            rotacion.agregarPeluquero(peluquero);
+        }
+
+        // 2. Registrar clientes iniciales
+        // Parametros: nombre, servicio, indicePeluquero, indiceHora, historial, pila,
+        // cola
+        registrarClienteInicial("Carlos", "Corte basico", 0, 0, historial, pilaDeshacer, colaEspera); // Brayan (0), 8AM
+                                                                                                      // (0)
+        registrarClienteInicial("Maria", "Tintura", 1, 2, historial, pilaDeshacer, colaEspera); // Chirly (1), 10AM (2)
+        registrarClienteInicial("Pedro", "Corte mas barba", 2, 4, historial, pilaDeshacer, colaEspera); // Javi (2),
+                                                                                                        // 12PM (4)
+
+        ordenarServicios(servicios, precios);
+
+        // 3. Mostrar el menú
         mostrarMenu(sc, historial, colaEspera, pilaDeshacer, rotacion);
+    }
+
+    // Método auxiliar con nombres de variables más claros
+    private static void registrarClienteInicial(String nombre, String servicio, int indicePeluquero, int indiceHora,
+            ListaClientes historial, PilaCliente pila, ColaCliente cola) {
+        String peluquero = peluqueros[indicePeluquero];
+        String hora = horas[indiceHora];
+
+        // Marcar horario como ocupado
+        horarios[indicePeluquero][indiceHora] = true;
+
+        // Agregar a las estructuras
+        historial.AgregarCliente(nombre, servicio, peluquero, hora, indicePeluquero, indiceHora);
+        pila.agregarCliente(nombre, servicio, peluquero, hora, indicePeluquero, indiceHora);
+        cola.agregarCliente(nombre, servicio);
     }
 
 }
 
-/* falta
-1. metodo binario
-2. metodo de ordenamiento
-3. enlazar el horario con el registro
-4.separar el proceso del caso 3 de l menu en un metodo para que sea mas legible
+/*
+ * falta
+ * 1. metodo binario
+ * 2. metodo de ordenamiento
+ * 3. enlazar el horario con el registro
+ * 4.separar el proceso del caso 3 de l menu en un metodo para que sea mas
+ * legible
  */

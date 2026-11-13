@@ -8,28 +8,25 @@ public class PilaCliente {
         cima = null;
     }
 
-    
-    public void agregarCliente(String cliente, String servicio, String peluquero, String hora, int indicePeluquero, int indiceHora) {
-        Nodo nuevo = new Nodo(cliente, servicio, peluquero, hora, indicePeluquero, indiceHora );
+    public void agregarCliente(String cliente, String servicio, String peluquero, String hora, int indicePeluquero,
+            int indiceHora) {
+        Nodo nuevo = new Nodo(cliente, servicio, peluquero, hora, indicePeluquero, indiceHora);
 
         nuevo.siguiente = cima;
         cima = nuevo;
 
-        
     }
 
-    
     public String atenderUltimoCliente() {
         if (cima == null) {
             System.out.println("La pila está vacía.");
             return null;
         }
-        if(cima.indicePeluquero != -1 &&
-       cima.indiceHora != -1){
+        if (cima.indicePeluquero != -1 &&
+                cima.indiceHora != -1) {
 
-        Peluqueria.horarios[cima.indicePeluquero]
-                           [cima.indiceHora] = false;
-       }                   
+            Peluqueria.horarios[cima.indicePeluquero][cima.indiceHora] = false;
+        }
 
         System.out.println("registro eliminado: "
                 + cima.dato + " - "
@@ -63,5 +60,25 @@ public class PilaCliente {
 
     public boolean estaVacia() {
         return cima == null;
+    }
+
+    public void eliminarClientePorNombre(String nombre) {
+        if (cima == null) return;
+
+        // Si el cliente a eliminar está en la cima
+        if (cima.dato.equals(nombre)) {
+            cima = cima.siguiente;
+            return;
+        }
+
+        // Buscar en el resto de la pila
+        Nodo actual = cima;
+        while (actual.siguiente != null) {
+            if (actual.siguiente.dato.equals(nombre)) {
+                actual.siguiente = actual.siguiente.siguiente;
+                return;
+            }
+            actual = actual.siguiente;
+        }
     }
 }

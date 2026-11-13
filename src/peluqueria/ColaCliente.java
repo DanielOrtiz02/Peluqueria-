@@ -26,25 +26,31 @@ public class ColaCliente {
         System.out.println("Cliente agregado a la cola.");
     }
 
-    // Sacamos al cliente de la cola ya que este va a ser atendido 
-    public void atenderCliente() {
+    // sacamos el cliente de la cola al ser atendido 
+    public String atenderCliente() {
 
-        if (frente == null) {
-            System.out.println("No hay clientes en espera.");
-            return;
-        }
-
-        System.out.println("Cliente atendido: "
-                + frente.dato
-                + " - "
-                + frente.detalle);
-
-        frente = frente.siguiente;
-
-        if (frente == null) {
-            fin = null;
-        }
+    if (frente == null) {
+        System.out.println("No hay clientes en espera.");
+        return null; 
     }
+
+    System.out.println("Cliente atendido: "
+            + frente.dato
+            + " - "
+            + frente.detalle);
+
+    // guarda el nombre antes de borrarlo de la cola
+    String nombreCliente = frente.dato; 
+
+    frente = frente.siguiente;
+
+    if (frente == null) {
+        fin = null;
+    }
+    
+    // devolver nombre
+    return nombreCliente; 
+}
   //mostrar los clientes los cuales estan en la cola 
     public void mostrarCola() {
 
