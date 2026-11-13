@@ -219,6 +219,10 @@ public class Peluqueria {
                         break;
                     }
                         int productoElegido = sc.nextInt();
+                        if(productoElegido < 1 || productoElegido > productos.length) {
+                            System.out.println("[!] Producto no válido. Cancelando registro.");
+                            break;
+                        }
                         String productoNombre = productos[productoElegido - 1];
 
                         sc.nextLine();
